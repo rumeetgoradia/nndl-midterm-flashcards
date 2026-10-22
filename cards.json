@@ -1,0 +1,1017 @@
+[
+  {
+    "id": "l02-001",
+    "lecture": 2,
+    "title": "Single-Layer Models",
+    "question": "For one example with prediction y and target t, what is the squared-error gradient with respect to the bias b?",
+    "answer": "∂J/∂b = y − t. The bias affects the prediction by 1, so its gradient is the residual."
+  },
+  {
+    "id": "l02-002",
+    "lecture": 2,
+    "title": "Single-Layer Models",
+    "question": "For one example x with prediction y and target t, what is the squared-error gradient with respect to the weight vector w?",
+    "answer": "∂J/∂w = (y − t)x. Each weight's gradient is the residual multiplied by its input feature."
+  },
+  {
+    "id": "l02-003",
+    "lecture": 2,
+    "title": "Single-Layer Models",
+    "question": "For logits z₁, z₂, z₃, what is the softmax probability of class 2?",
+    "answer": "p₂ = exp(z₂) / [exp(z₁) + exp(z₂) + exp(z₃)]."
+  },
+  {
+    "id": "l02-004",
+    "lecture": 2,
+    "title": "Single-Layer Models",
+    "question": "What range must every softmax probability fall in?",
+    "answer": "Every softmax probability is strictly positive and less than 1."
+  },
+  {
+    "id": "l02-005",
+    "lecture": 2,
+    "title": "Single-Layer Models",
+    "question": "What must the probabilities from a softmax output sum to?",
+    "answer": "They must sum to 1, so they form a probability distribution over the classes."
+  },
+  {
+    "id": "l02-006",
+    "lecture": 2,
+    "title": "Single-Layer Models",
+    "question": "How can a polynomial model be nonlinear in x but linear in its learned weights?",
+    "answer": "It applies a fixed feature map such as φ(x) = [1, x, x²]ᵀ, then takes a weighted sum wᵀφ(x). The features are nonlinear in x, but the weights enter linearly."
+  },
+  {
+    "id": "l02-007",
+    "lecture": 2,
+    "title": "Single-Layer Models",
+    "question": "Training error falls while validation error rises as model complexity increases. What does this suggest, and which split guides complexity choice?",
+    "answer": "This suggests overfitting: the model is fitting training details that do not generalize. Use validation error to choose complexity; reserve test data for final evaluation."
+  },
+  {
+    "id": "l02-008",
+    "lecture": 2,
+    "title": "Single-Layer Models",
+    "question": "What assumption does a softmax classifier make about the labels?",
+    "answer": "Exactly one of K mutually exclusive classes is correct. Softmax models competing class probabilities, not independently true labels."
+  },
+  {
+    "id": "l03-009",
+    "lecture": 3,
+    "title": "Multilayer Perceptrons",
+    "question": "Why does intersection of the positive and negative convex hulls rule out a strict linear separator?",
+    "answer": "The shared point would have to lie on both sides of the separating boundary. A strict separator cannot assign it to both classes."
+  },
+  {
+    "id": "l03-010",
+    "lecture": 3,
+    "title": "Multilayer Perceptrons",
+    "question": "What is the XOR labeling of the four binary input pairs?",
+    "answer": "(0,0)→0, (1,0)→1, (0,1)→1, and (1,1)→0."
+  },
+  {
+    "id": "l03-011",
+    "lecture": 3,
+    "title": "Multilayer Perceptrons",
+    "question": "In the XOR diagram, where do the segment joining positive examples and the segment joining negative examples meet?",
+    "answer": "At the center of the unit square, (0.5, 0.5). The class convex hulls therefore intersect."
+  },
+  {
+    "id": "l03-012",
+    "lecture": 3,
+    "title": "Multilayer Perceptrons",
+    "question": "What feature exposes the interaction between two binary inputs in XOR?",
+    "answer": "The product feature x₁x₂ indicates whether both inputs are on. A person still has to choose useful features by hand."
+  },
+  {
+    "id": "l03-013",
+    "lecture": 3,
+    "title": "Multilayer Perceptrons",
+    "question": "What geometric objects can you inspect to test whether labeled points are linearly separable?",
+    "answer": "Inspect the positive and negative class convex hulls. If they intersect, the labels are not linearly separable."
+  },
+  {
+    "id": "l03-014",
+    "lecture": 3,
+    "title": "Multilayer Perceptrons",
+    "question": "For any three noncollinear points in 2D, what guarantee holds for every binary labeling?",
+    "answer": "Every labeling is linearly separable. Four points can fail, for example in an XOR arrangement."
+  },
+  {
+    "id": "l03-015",
+    "lecture": 3,
+    "title": "Multilayer Perceptrons",
+    "question": "A fully connected layer maps D=7 inputs to H=4 outputs. What are the shapes of W and b?",
+    "answer": "W is 4×7 and b is 4×1 (or a length-4 vector). This gives 28 weights and 4 biases."
+  },
+  {
+    "id": "l03-016",
+    "lecture": 3,
+    "title": "Multilayer Perceptrons",
+    "question": "Why can a multilayer perceptron represent functions a single linear unit cannot?",
+    "answer": "Nonlinear activations let hidden layers create intermediate features and bend decision boundaries. Without activations, affine layers compose into one affine map."
+  },
+  {
+    "id": "l03-017",
+    "lecture": 3,
+    "title": "Multilayer Perceptrons",
+    "question": "In the hand-built XOR network, what does hidden unit h₁ detect?",
+    "answer": "h₁ detects whether at least one input is on: OR(x₁,x₂)."
+  },
+  {
+    "id": "l03-018",
+    "lecture": 3,
+    "title": "Multilayer Perceptrons",
+    "question": "In the hand-built XOR network, what does hidden unit h₂ detect?",
+    "answer": "h₂ detects whether both inputs are on: AND(x₁,x₂)."
+  },
+  {
+    "id": "l03-019",
+    "lecture": 3,
+    "title": "Multilayer Perceptrons",
+    "question": "How does the output combine the two hidden detectors to compute XOR?",
+    "answer": "It turns on when h₁ is on and h₂ is off: OR AND NOT-AND, which is true when exactly one input is on."
+  },
+  {
+    "id": "l03-020",
+    "lecture": 3,
+    "title": "Multilayer Perceptrons",
+    "question": "What is a useful first step when designing a small network for a binary-sequence condition?",
+    "answer": "Break the condition into simple subconditions, such as local patterns. Assign hidden units to detect those patterns, then let the output combine them."
+  },
+  {
+    "id": "l03-021",
+    "lecture": 3,
+    "title": "Multilayer Perceptrons",
+    "question": "To detect “11” anywhere in a four-bit string, which local patterns should hidden units test?",
+    "answer": "Test each adjacent pair: (x₁,x₂), (x₂,x₃), and (x₃,x₄). Each detector recognizes an AND of its two bits; the output ORs the detectors."
+  },
+  {
+    "id": "l03-022",
+    "lecture": 3,
+    "title": "Multilayer Perceptrons",
+    "question": "What does universal approximation say about a sufficiently large feed-forward network with nonlinear activations?",
+    "answer": "It can approximate a broad class of functions arbitrarily well, given sufficient width/capacity and suitable assumptions."
+  },
+  {
+    "id": "l03-023",
+    "lecture": 3,
+    "title": "Multilayer Perceptrons",
+    "question": "What does the universal approximation theorem not guarantee?",
+    "answer": "It does not guarantee a small network, easy training, or good generalization from finite data."
+  },
+  {
+    "id": "l03-024",
+    "lecture": 3,
+    "title": "Multilayer Perceptrons",
+    "question": "Why does one sigmoid applied to a linear score still have a linear decision boundary?",
+    "answer": "The sigmoid is monotonic, so thresholding σ(wᵀx+b) is equivalent to thresholding wᵀx+b. Its output is nonlinear, but its boundary in x is still a hyperplane."
+  },
+  {
+    "id": "l03-025",
+    "lecture": 3,
+    "title": "Multilayer Perceptrons",
+    "question": "How many hidden units are needed to explicitly represent an arbitrary lookup table over D binary inputs?",
+    "answer": "Up to 2ᴰ units—one detector for each input configuration—so the construction grows exponentially and becomes impractical."
+  },
+  {
+    "id": "l03-026",
+    "lecture": 3,
+    "title": "Multilayer Perceptrons",
+    "question": "When visualizing a first-layer unit, what does its weight vector reveal?",
+    "answer": "It shows the input pattern the unit responds to strongly: its learned feature or template."
+  },
+  {
+    "id": "l03-general-position",
+    "lecture": 3,
+    "title": "Multilayer Perceptrons",
+    "question": "What is the largest n such that every labeling of n points in general position in 2D is guaranteed linearly separable?",
+    "answer": "n=3. Any three noncollinear points can be separated under every binary labeling; four points can form a nonseparable XOR pattern."
+  },
+  {
+    "id": "l04-027",
+    "lecture": 4,
+    "title": "Distributed Representations & Neural Language Models",
+    "question": "Expand the joint probability p(w₁,w₂,w₃,w₄) using the chain rule.",
+    "answer": "p(w₁)p(w₂|w₁)p(w₃|w₁,w₂)p(w₄|w₁,w₂,w₃)."
+  },
+  {
+    "id": "l04-028",
+    "lecture": 4,
+    "title": "Distributed Representations & Neural Language Models",
+    "question": "In a 4-gram language model, how many preceding words form the context?",
+    "answer": "Three preceding words form the context; together with the target word, they make a four-word n-gram."
+  },
+  {
+    "id": "l04-029",
+    "lecture": 4,
+    "title": "Distributed Representations & Neural Language Models",
+    "question": "Why do longer n-gram contexts make count estimates less reliable?",
+    "answer": "The number of possible contexts grows exponentially, while observed data are spread more thinly across them. This increases sparsity and the chance of unseen contexts."
+  },
+  {
+    "id": "l04-030",
+    "lecture": 4,
+    "title": "Distributed Representations & Neural Language Models",
+    "question": "What problem does a raw count-based model face when a context was never seen?",
+    "answer": "It assigns zero probability to the unseen continuation, so a sequence containing it gets zero probability. Smoothing or backoff can help."
+  },
+  {
+    "id": "l04-031",
+    "lecture": 4,
+    "title": "Distributed Representations & Neural Language Models",
+    "question": "In next-word prediction, what are the context and target?",
+    "answer": "The context is the preceding word or words; the target is the next word the model should predict."
+  },
+  {
+    "id": "l04-032",
+    "lecture": 4,
+    "title": "Distributed Representations & Neural Language Models",
+    "question": "What is an n-gram table?",
+    "answer": "A count/probability lookup table that stores estimates for each context and possible next word. For an n-gram model, it uses up to n−1 preceding words as context."
+  },
+  {
+    "id": "l04-033",
+    "lecture": 4,
+    "title": "Distributed Representations & Neural Language Models",
+    "question": "How does a neural language model share information across contexts?",
+    "answer": "It learns shared embeddings and network weights, so related contexts can produce similar features and predictions instead of requiring a separate count for every exact context."
+  },
+  {
+    "id": "l04-034",
+    "lecture": 4,
+    "title": "Distributed Representations & Neural Language Models",
+    "question": "What is the difference between a localist and a distributed representation?",
+    "answer": "A localist representation assigns information to a dedicated coordinate or table entry. A distributed representation spreads it across multiple coordinates, allowing patterns to be shared."
+  },
+  {
+    "id": "l04-035",
+    "lecture": 4,
+    "title": "Distributed Representations & Neural Language Models",
+    "question": "If vocabulary size is V and embedding size is d, what is the embedding-matrix shape?",
+    "answer": "The embedding matrix E has shape d×V, with one word embedding in each column."
+  },
+  {
+    "id": "l04-036",
+    "lecture": 4,
+    "title": "Distributed Representations & Neural Language Models",
+    "question": "What does multiplying an embedding matrix E by a one-hot word vector do?",
+    "answer": "It selects the column corresponding to the 1 in the one-hot vector—the word's embedding."
+  },
+  {
+    "id": "l04-037",
+    "lecture": 4,
+    "title": "Distributed Representations & Neural Language Models",
+    "question": "How can embeddings help a neural language model with a context it has not seen exactly?",
+    "answer": "Words used in similar contexts can learn similar vectors. The model can reuse those shared features to make a useful prediction for a rare or unseen exact phrase."
+  },
+  {
+    "id": "l04-038",
+    "lecture": 4,
+    "title": "Distributed Representations & Neural Language Models",
+    "question": "For two unit-length embeddings, what does a larger dot product imply about Euclidean distance?",
+    "answer": "A larger dot product means a smaller Euclidean distance because ‖u−v‖² = 2−2uᵀv for unit vectors. Example: dot 0.8 gives distance √0.4≈0.63; dot 0 gives distance √2≈1.41."
+  },
+  {
+    "id": "l04-039",
+    "lecture": 4,
+    "title": "Distributed Representations & Neural Language Models",
+    "question": "Why is “neural models share information across contexts” safer than “they always use less memory”?",
+    "answer": "N-gram tables grow rapidly with context length, while neural models share parameters across contexts. But neural models still need memory for embeddings, weights, and activations, so they are not always smaller."
+  },
+  {
+    "id": "l04-040",
+    "lecture": 4,
+    "title": "Distributed Representations & Neural Language Models",
+    "question": "What does the distributional hypothesis say?",
+    "answer": "A word's meaning is reflected in the contexts it appears in: words found in similar contexts tend to have related meanings (“judge a word by the company it keeps”)."
+  },
+  {
+    "id": "l04-041",
+    "lecture": 4,
+    "title": "Distributed Representations & Neural Language Models",
+    "question": "What does co-occurrence matrix entry Xᵢⱼ represent?",
+    "answer": "It counts how often context word j appears near target word i in the corpus."
+  },
+  {
+    "id": "l04-042",
+    "lecture": 4,
+    "title": "Distributed Representations & Neural Language Models",
+    "question": "Why is a word co-occurrence matrix usually sparse?",
+    "answer": "Most vocabulary pairs never appear near each other in a finite corpus, so most matrix entries are zero."
+  },
+  {
+    "id": "l04-043",
+    "lecture": 4,
+    "title": "Distributed Representations & Neural Language Models",
+    "question": "In GloVe, what do rᵢ and r̃ⱼ represent?",
+    "answer": "rᵢ is the target-word vector and r̃ⱼ is the context-word vector. Their dot product helps predict the log co-occurrence count for the pair."
+  },
+  {
+    "id": "l04-044",
+    "lecture": 4,
+    "title": "Distributed Representations & Neural Language Models",
+    "question": "What do the GloVe bias terms capture?",
+    "answer": "They capture overall target-word and context-word frequency effects not explained by the vector dot product alone."
+  },
+  {
+    "id": "l04-045",
+    "lecture": 4,
+    "title": "Distributed Representations & Neural Language Models",
+    "question": "Write the vector expression for “Paris is to France as London is to ___.”",
+    "answer": "v(France) − v(Paris) + v(London); choose the vocabulary vector nearest to the result."
+  },
+  {
+    "id": "l04-046",
+    "lecture": 4,
+    "title": "Distributed Representations & Neural Language Models",
+    "question": "How does GloVe's training signal differ from next-word prediction?",
+    "answer": "GloVe learns from global word-context co-occurrence counts. A next-word model learns from the distribution of the actual next word given preceding context."
+  },
+  {
+    "id": "l05-047",
+    "lecture": 5,
+    "title": "Backpropagation",
+    "question": "For L=½(y−t)², what is the loss derivative with respect to prediction y?",
+    "answer": "ȳ = ∂L/∂y = y−t."
+  },
+  {
+    "id": "l05-048",
+    "lecture": 5,
+    "title": "Backpropagation",
+    "question": "For y=σ(z), what local derivative is needed to compute z̄ from ȳ?",
+    "answer": "z̄ = ȳσ′(z), where σ′(z)=σ(z)(1−σ(z)). Multiply the incoming gradient by the local slope."
+  },
+  {
+    "id": "l05-049",
+    "lecture": 5,
+    "title": "Backpropagation",
+    "question": "When a graph value feeds two branches, what happens to the derivative contributions at that value?",
+    "answer": "Add the contributions from both branches. Each path contributes to how the shared value affects the loss."
+  },
+  {
+    "id": "l05-050",
+    "lecture": 5,
+    "title": "Backpropagation",
+    "question": "What is one use of finite differences, and why are they not used to train every large-model parameter?",
+    "answer": "They can check gradients on small examples. They require many extra function evaluations and introduce numerical error, making them costly for large models."
+  },
+  {
+    "id": "l05-051",
+    "lecture": 5,
+    "title": "Backpropagation",
+    "question": "How does a computation graph simplify backpropagation through branches and shared values?",
+    "answer": "It breaks the computation into operations with local backward rules. Work backward through the graph and add gradient contributions whenever paths meet."
+  },
+  {
+    "id": "l05-052",
+    "lecture": 5,
+    "title": "Backpropagation",
+    "question": "What does a vector-Jacobian product (VJP) compute?",
+    "answer": "It maps an incoming output gradient back to an input gradient through a function, combining effects of all outputs on each input."
+  },
+  {
+    "id": "l05-053",
+    "lecture": 5,
+    "title": "Backpropagation",
+    "question": "Why does backprop usually avoid forming the full Jacobian?",
+    "answer": "The full derivative table can be huge. A VJP computes the needed gradient product directly, saving time and memory."
+  },
+  {
+    "id": "l05-054",
+    "lecture": 5,
+    "title": "Backpropagation",
+    "question": "If z=Wx and z̄=∂L/∂z, what is x̄?",
+    "answer": "x̄ = Wᵀz̄. If W is H×D, z̄ is H×1, and the result x̄ is D×1."
+  },
+  {
+    "id": "l05-055",
+    "lecture": 5,
+    "title": "Backpropagation",
+    "question": "If z=Wx+b with z∈ℝᴴ and x∈ℝᴰ, what is the shape of W̄?",
+    "answer": "W̄ has shape H×D, the same shape as W. Elementwise, W̄=z̄xᵀ."
+  },
+  {
+    "id": "l05-056",
+    "lecture": 5,
+    "title": "Backpropagation",
+    "question": "Do an adjoint (“bar”) variable and its original value have the same shape?",
+    "answer": "Yes, for an ordinary scalar loss, v̄=∂L/∂v has the same shape as v. For example, W̄ and W are both H×D."
+  },
+  {
+    "id": "l05-057",
+    "lecture": 5,
+    "title": "Backpropagation",
+    "question": "Why is reverse-mode differentiation efficient for neural-network training?",
+    "answer": "One backward pass computes a scalar loss's gradients with respect to many parameters, which is efficient when there is one loss and many parameters."
+  },
+  {
+    "id": "l05-058",
+    "lecture": 5,
+    "title": "Backpropagation",
+    "question": "For z=W²x+b and an incoming z̄, what is the weight gradient W̄?",
+    "answer": "W̄ = z̄xᵀ. The outer product has shape H×D when z̄ is H×1 and x is D×1."
+  },
+  {
+    "id": "l05-059",
+    "lecture": 5,
+    "title": "Backpropagation",
+    "question": "Why do gradients from all branches need to be summed before propagating farther backward?",
+    "answer": "They are separate paths by which a shared value affects the loss; the total derivative is the sum of the path derivatives."
+  },
+  {
+    "id": "l06-060",
+    "lecture": 6,
+    "title": "Optimization",
+    "question": "What information does the Hessian add beyond the gradient?",
+    "answer": "The gradient gives the current slope; the Hessian describes how that slope changes—local curvature."
+  },
+  {
+    "id": "l06-061",
+    "lecture": 6,
+    "title": "Optimization",
+    "question": "At a critical point, what eigenvalue pattern indicates a saddle point?",
+    "answer": "At least one positive and one negative eigenvalue: the loss curves upward in some directions and downward in others."
+  },
+  {
+    "id": "l06-062",
+    "lecture": 6,
+    "title": "Optimization",
+    "question": "What does convexity guarantee about a local minimum?",
+    "answer": "Every local minimum of a convex function is also a global minimum."
+  },
+  {
+    "id": "l06-063",
+    "lecture": 6,
+    "title": "Optimization",
+    "question": "Why can loss be convex in logits but non-convex in an MLP's weights?",
+    "answer": "An MLP maps weights to logits through nonlinear layers and activations. Composing a convex loss with this nonlinear parameter-to-score map need not stay convex."
+  },
+  {
+    "id": "l06-064",
+    "lecture": 6,
+    "title": "Optimization",
+    "question": "If a Hessian has eigenvalues −2, 0, and 5 at a zero-gradient point, what does that tell you?",
+    "answer": "There is upward and downward curvature, so the point is a saddle (with a flat direction), not a local minimum."
+  },
+  {
+    "id": "l06-065",
+    "lecture": 6,
+    "title": "Optimization",
+    "question": "Why can identical hidden-unit initialization prevent the units from specializing?",
+    "answer": "They receive identical gradients and updates, so they remain identical. Random initial values break the symmetry and let them learn different features."
+  },
+  {
+    "id": "l06-066",
+    "lecture": 6,
+    "title": "Optimization",
+    "question": "Why does a sigmoid unit near output 1 learn slowly?",
+    "answer": "It is saturated: its derivative is close to zero, so little gradient passes backward through it."
+  },
+  {
+    "id": "l06-067",
+    "lecture": 6,
+    "title": "Optimization",
+    "question": "How does a saddle point differ from a plateau?",
+    "answer": "A saddle curves upward in some directions and downward in others. A plateau is relatively flat across nearby directions."
+  },
+  {
+    "id": "l06-068",
+    "lecture": 6,
+    "title": "Optimization",
+    "question": "In a quadratic objective with curvature eigenvalues 100 and 1, which direction constrains the learning rate more?",
+    "answer": "The λ=100 direction. Steep curvature makes large steps more likely to overshoot."
+  },
+  {
+    "id": "l06-069",
+    "lecture": 6,
+    "title": "Optimization",
+    "question": "What does a large condition number imply for gradient descent?",
+    "answer": "The objective has directions with very different curvature, forming a long narrow valley. Gradient descent can zigzag and converge slowly."
+  },
+  {
+    "id": "l06-070",
+    "lecture": 6,
+    "title": "Optimization",
+    "question": "How does momentum reduce zigzagging and speed movement in consistent directions?",
+    "answer": "It smooths updates by accumulating a running direction: alternating gradients partly cancel, while consistently aligned gradients build up."
+  },
+  {
+    "id": "l06-071",
+    "lecture": 6,
+    "title": "Optimization",
+    "question": "What does momentum do?",
+    "answer": "It uses a running average of gradients/updates to damp oscillation and build speed in consistent directions."
+  },
+  {
+    "id": "l06-072",
+    "lecture": 6,
+    "title": "Optimization",
+    "question": "What does RMSprop do?",
+    "answer": "It divides each coordinate's gradient by a scale based on a moving average of that coordinate's squared gradients, shrinking steps in coordinates that have recently had large gradients."
+  },
+  {
+    "id": "l06-073",
+    "lecture": 6,
+    "title": "Optimization",
+    "question": "What does Adam combine?",
+    "answer": "Adam combines momentum-like averaging of gradients with RMSprop-like scaling from squared gradients."
+  },
+  {
+    "id": "l06-074",
+    "lecture": 6,
+    "title": "Optimization",
+    "question": "Why can standardizing input features help optimization?",
+    "answer": "Centering features and scaling them to comparable ranges reduces imbalance in the objective, often making gradient steps less erratic."
+  },
+  {
+    "id": "l06-075",
+    "lecture": 6,
+    "title": "Optimization",
+    "question": "Why can an SGD update increase the full-data loss even when SGD is useful?",
+    "answer": "It uses a noisy gradient from one example or a mini-batch, which only estimates the full-data gradient. A step can point in a locally unhelpful direction for the full dataset."
+  },
+  {
+    "id": "l06-076",
+    "lecture": 6,
+    "title": "Optimization",
+    "question": "What is one training iteration?",
+    "answer": "One parameter update based on one example or one mini-batch (including its forward and backward calculations)."
+  },
+  {
+    "id": "l06-077",
+    "lecture": 6,
+    "title": "Optimization",
+    "question": "What is one epoch?",
+    "answer": "One pass through the entire training dataset, usually made of multiple mini-batch iterations."
+  },
+  {
+    "id": "l06-078",
+    "lecture": 6,
+    "title": "Optimization",
+    "question": "A loss curve fluctuates more than another. What settings could explain the difference?",
+    "answer": "A larger learning rate can make updates jumpier; a smaller batch can make gradients noisier. The curve alone cannot identify which setting changed."
+  },
+  {
+    "id": "l06-079",
+    "lecture": 6,
+    "title": "Optimization",
+    "question": "Does a later first plotted point on an SGD-iteration axis prove that the batch size is larger?",
+    "answer": "No. It may reflect when losses were logged. You need logging details or the number of examples per update to infer batch size."
+  },
+  {
+    "id": "l06-080",
+    "lecture": 6,
+    "title": "Optimization",
+    "question": "What happens to gradient noise as batch size increases?",
+    "answer": "It generally decreases because each gradient averages over more examples."
+  },
+  {
+    "id": "l06-081",
+    "lecture": 6,
+    "title": "Optimization",
+    "question": "What happens to the cost per parameter update as batch size increases?",
+    "answer": "It generally increases because more examples must be processed per update."
+  },
+  {
+    "id": "l06-082",
+    "lecture": 6,
+    "title": "Optimization",
+    "question": "How can a larger batch affect hardware utilization?",
+    "answer": "It can improve parallel hardware utilization by processing more examples together, up to memory and hardware limits."
+  },
+  {
+    "id": "l06-083",
+    "lecture": 6,
+    "title": "Optimization",
+    "question": "If training loss oscillates widely, what settings might you adjust?",
+    "answer": "Try lowering the learning rate; a smaller batch can also cause stronger gradient noise and explain the oscillations."
+  },
+  {
+    "id": "l06-084",
+    "lecture": 6,
+    "title": "Optimization",
+    "question": "How should you cautiously compare two SGD loss curves?",
+    "answer": "Greater fluctuation may come from a higher learning rate, a smaller batch, or both. Curves alone do not prove which setting changed."
+  },
+  {
+    "id": "l06-eigenvalue-meaning",
+    "lecture": 6,
+    "title": "Optimization",
+    "question": "What does a Hessian eigenvalue mean at a particular point?",
+    "answer": "It measures curvature of the loss at that point along a corresponding eigenvector direction. The Hessian is evaluated locally, so its eigenvalues describe local curvature, not one fixed property of the whole function."
+  },
+  {
+    "id": "l07-085",
+    "lecture": 7,
+    "title": "Convolutional Neural Networks",
+    "question": "Why is a fully connected first layer a poor fit for a large image?",
+    "answer": "It has a separate weight for each input-pixel/output-unit pair, creating an enormous parameter count and ignoring spatial locality."
+  },
+  {
+    "id": "l07-086",
+    "lecture": 7,
+    "title": "Convolutional Neural Networks",
+    "question": "What two main ideas reduce parameters in a convolution layer?",
+    "answer": "Local connectivity: each filter sees a small patch. Weight sharing: the same filter is reused at every spatial position."
+  },
+  {
+    "id": "l07-087",
+    "lecture": 7,
+    "title": "Convolutional Neural Networks",
+    "question": "How many filter weights are in Cᵢₙ=3, Cₒᵤₜ=16, K=3 convolution? Ignore biases.",
+    "answer": "K²CᵢₙCₒᵤₜ = 3²·3·16 = 432 weights."
+  },
+  {
+    "id": "l07-088",
+    "lecture": 7,
+    "title": "Convolutional Neural Networks",
+    "question": "What does one convolution filter's feature map show?",
+    "answer": "It shows how strongly that filter responds at each spatial location. Strong values mark places where its learned feature is present."
+  },
+  {
+    "id": "l07-089",
+    "lecture": 7,
+    "title": "Convolutional Neural Networks",
+    "question": "What is the high-level idea behind CNN backpropagation slides 15–17?",
+    "answer": "Use the same chain rule as ordinary backpropagation, but account for many spatial connections and shared filter weights. Focus on this idea rather than detailed derivations."
+  },
+  {
+    "id": "l07-090",
+    "lecture": 7,
+    "title": "Convolutional Neural Networks",
+    "question": "For a no-padding K=3, stride-1 convolution on a 64×64 input, what is the output size?",
+    "answer": "(64−3)/1+1 = 62, so the output is 62×62."
+  },
+  {
+    "id": "l07-091",
+    "lecture": 7,
+    "title": "Convolutional Neural Networks",
+    "question": "What is the output size after 2×2 max pooling with stride 2 on a 62×62 feature map?",
+    "answer": "31×31."
+  },
+  {
+    "id": "l07-092",
+    "lecture": 7,
+    "title": "Convolutional Neural Networks",
+    "question": "For a 512×512 input, what size follows a no-padding 3×3 stride-1 convolution?",
+    "answer": "510×510."
+  },
+  {
+    "id": "l07-093",
+    "lecture": 7,
+    "title": "Convolutional Neural Networks",
+    "question": "After stride-2 pooling on that 510×510 map, what size do you get?",
+    "answer": "255×255 (using the practice quiz's ceiling-rounding instruction for pooling)."
+  },
+  {
+    "id": "l07-094",
+    "lecture": 7,
+    "title": "Convolutional Neural Networks",
+    "question": "What is translation equivariance in a convolutional feature map?",
+    "answer": "If the input shifts, the feature response shifts correspondingly in location."
+  },
+  {
+    "id": "l07-095",
+    "lecture": 7,
+    "title": "Convolutional Neural Networks",
+    "question": "What is translation invariance in a classifier?",
+    "answer": "Small input shifts do not change the final prediction (or change it very little)."
+  },
+  {
+    "id": "l07-096",
+    "lecture": 7,
+    "title": "Convolutional Neural Networks",
+    "question": "What happens to spatial size with a stride-1 convolution when padding is chosen to preserve size?",
+    "answer": "The spatial size stays the same; for odd kernel K, symmetric padding P=(K−1)/2 preserves size."
+  },
+  {
+    "id": "l07-097",
+    "lecture": 7,
+    "title": "Convolutional Neural Networks",
+    "question": "What happens to spatial size after stride-2 pooling?",
+    "answer": "It shrinks by about half, so a block with stride-2 pooling does not preserve the original size."
+  },
+  {
+    "id": "l07-098",
+    "lecture": 7,
+    "title": "Convolutional Neural Networks",
+    "question": "A filter weight is shared at 100 locations. How many parameter gradients does it have, and how are they combined?",
+    "answer": "One gradient for that single shared weight. Sum the gradient contributions from all 100 uses."
+  },
+  {
+    "id": "l07-099",
+    "lecture": 7,
+    "title": "Convolutional Neural Networks",
+    "question": "If y₁=wa and y₂=wb, what is ∂J/∂w?",
+    "answer": "(∂J/∂y₁)a + (∂J/∂y₂)b. Add the contribution through each use of w."
+  },
+  {
+    "id": "l07-100",
+    "lecture": 7,
+    "title": "Convolutional Neural Networks",
+    "question": "Why can one image pixel receive gradients from several output locations?",
+    "answer": "That pixel belongs to several overlapping receptive fields, each affecting a different output with its own gradient."
+  },
+  {
+    "id": "l07-101",
+    "lecture": 7,
+    "title": "Convolutional Neural Networks",
+    "question": "How is convolution backprop like backprop through a fully connected graph?",
+    "answer": "Both use the chain rule and sum gradient contributions along paths. Convolution adds many spatial paths and shared parameters."
+  },
+  {
+    "id": "l07-102",
+    "lecture": 7,
+    "title": "Convolutional Neural Networks",
+    "question": "What does a nonlinear activation add after a convolution?",
+    "answer": "It lets later layers combine features nonlinearly, expanding the functions the network can represent beyond a composition of linear convolutions."
+  },
+  {
+    "id": "l07-103",
+    "lecture": 7,
+    "title": "Convolutional Neural Networks",
+    "question": "What does pooling do to a feature map?",
+    "answer": "It summarizes nearby values (for example, by taking their maximum), reducing spatial size while retaining strong responses and making features less sensitive to small shifts."
+  },
+  {
+    "id": "l07-weird-shapes",
+    "lecture": 7,
+    "title": "Convolutional Neural Networks",
+    "question": "An input is 11×17; kernel is 4×3; padding is (1,2); stride is (2,3). What is the spatial output size?",
+    "answer": "Apply the size formula separately: Hout=floor((11+2−4)/2)+1=5; Wout=floor((17+4−3)/3)+1=7. The output is 5×7 per output channel."
+  },
+  {
+    "id": "l07-weird-counts",
+    "lecture": 7,
+    "title": "Convolutional Neural Networks",
+    "question": "For the previous convolution with Cin=5 and Cout=7, how many weights and connections are there?",
+    "answer": "Weights: 4·3·5·7=420. The 5×7×7 output positions each use 4·3·5=60 input connections, for 14,700 connections total. Weights are shared across positions."
+  },
+  {
+    "id": "l07-stride-floor",
+    "lecture": 7,
+    "title": "Convolutional Neural Networks",
+    "question": "An 8-wide input uses a 5-wide kernel, no padding, and stride 2. What is the output width, and why?",
+    "answer": "floor((8−5)/2)+1=2. Only two complete filter placements fit; the leftover end position is too short for another."
+  },
+  {
+    "id": "l07-pooling-formula",
+    "lecture": 7,
+    "title": "Convolutional Neural Networks",
+    "question": "How do you compute one spatial dimension after a pooling window of size Kₚ and stride Sₚ?",
+    "answer": "Use Hout=floor((H+2P−Kₚ)/Sₚ)+1 (or the ceiling rule if the problem specifies it). For a 2×2 pool with stride 2 and no padding, dimensions are roughly halved."
+  },
+  {
+    "id": "l07-quiz-recurrence",
+    "lecture": 7,
+    "title": "Convolutional Neural Networks",
+    "question": "Starting at 512, a block applies a no-padding 3×3 stride-1 convolution, then stride-2 pooling with ceiling rounding. What happens after repeated blocks?",
+    "answer": "Each block maps d to ceil((d−2)/2): 512→255→127→63→31→15→7→3→1. It takes 8 blocks to reach 1×1."
+  },
+  {
+    "id": "l08-104",
+    "lecture": 8,
+    "title": "Image Classification",
+    "question": "Which network quantity most directly determines activation memory during training?",
+    "answer": "The number and size of intermediate activations, especially across layers and examples in a batch."
+  },
+  {
+    "id": "l08-105",
+    "lecture": 8,
+    "title": "Image Classification",
+    "question": "Which network quantity most directly determines model storage at test time?",
+    "answer": "The number of learned parameters (weights and biases)."
+  },
+  {
+    "id": "l08-106",
+    "lecture": 8,
+    "title": "Image Classification",
+    "question": "How can convolution have many connections but relatively few weights?",
+    "answer": "Each filter weight is reused at many spatial positions, so the number of connections can be large while the unique shared parameter set stays small."
+  },
+  {
+    "id": "l08-107",
+    "lecture": 8,
+    "title": "Image Classification",
+    "question": "A model has many activations but few parameters. What is the likely memory concern during training versus inference?",
+    "answer": "Training may be activation-memory-heavy because backprop needs intermediate values. Inference often needs mainly the parameters and current activations."
+  },
+  {
+    "id": "l08-108",
+    "lecture": 8,
+    "title": "Image Classification",
+    "question": "Why did convolutional models become more practical as datasets and computing resources grew?",
+    "answer": "Large datasets support learning useful filters, while more compute and memory make training and processing many image connections feasible."
+  },
+  {
+    "id": "l08-109",
+    "lecture": 8,
+    "title": "Image Classification",
+    "question": "What padding preserves size for a stride-1 convolution with a 5×5 kernel?",
+    "answer": "Padding P=2 on each side (for odd K, use P=(K−1)/2)."
+  },
+  {
+    "id": "l08-110",
+    "lecture": 8,
+    "title": "Image Classification",
+    "question": "What is the output of a 28×28 input with K=3, stride 1, and padding 1?",
+    "answer": "28×28; the one-pixel padding offsets the size reduction from the 3×3 kernel."
+  },
+  {
+    "id": "l08-111",
+    "lecture": 8,
+    "title": "Image Classification",
+    "question": "How does image classification differ from semantic segmentation?",
+    "answer": "Classification predicts one label for the whole image. Semantic segmentation predicts a category for each pixel."
+  },
+  {
+    "id": "l08-112",
+    "lecture": 8,
+    "title": "Image Classification",
+    "question": "Will stride-2 pooling preserve image size if the convolution itself preserves size?",
+    "answer": "No. Stride-2 pooling reduces each spatial dimension by about half."
+  },
+  {
+    "id": "l08-113",
+    "lecture": 8,
+    "title": "Image Classification",
+    "question": "With few labeled examples on a task similar to pre-training, should you freeze more or fewer layers?",
+    "answer": "Freeze more of the pre-trained network to avoid changing useful features based on too little data; train the new output layer."
+  },
+  {
+    "id": "l08-114",
+    "lecture": 8,
+    "title": "Image Classification",
+    "question": "How does a large difference between pre-training images and the new image domain affect fine-tuning?",
+    "answer": "It may require fine-tuning more layers because later and possibly earlier features are less directly useful. If the input modality is unrelated, negative transfer may make a different model better."
+  },
+  {
+    "id": "l08-115",
+    "lecture": 8,
+    "title": "Image Classification",
+    "question": "Why is the fine-tuning learning rate often lower than the from-scratch rate?",
+    "answer": "To adjust useful pre-trained weights carefully instead of overwriting them with large updates from a small target dataset."
+  },
+  {
+    "id": "l08-116",
+    "lecture": 8,
+    "title": "Image Classification",
+    "question": "How does gradient accumulation reduce peak activation memory?",
+    "answer": "Process smaller micro-batches and add their gradients before one optimizer update. It lowers peak activations while preserving a larger effective batch, at extra bookkeeping/compute cost."
+  },
+  {
+    "id": "l08-117",
+    "lecture": 8,
+    "title": "Image Classification",
+    "question": "How does activation checkpointing reduce memory, and what is the tradeoff?",
+    "answer": "Store selected activations and recompute others during backpropagation. It uses less memory but more computation time."
+  },
+  {
+    "id": "l08-118",
+    "lecture": 8,
+    "title": "Image Classification",
+    "question": "How does lower precision reduce activation memory, and what is a tradeoff?",
+    "answer": "Fewer bits per activation use less memory and can improve speed, but may reduce numerical accuracy or stability."
+  },
+  {
+    "id": "l08-119",
+    "lecture": 8,
+    "title": "Image Classification",
+    "question": "Rank transfer from an ImageNet-trained vision model to similar-animal photos, vehicles, X-rays, and text.",
+    "answer": "Typically: similar animal photos > vehicles > X-rays > text. Similar images share more visual features; text uses a different modality and is least compatible."
+  },
+  {
+    "id": "l08-classifier-head",
+    "lecture": 8,
+    "title": "Image Classification",
+    "question": "In transfer learning, what is the classifier head?",
+    "answer": "The final layer or layers that map learned features to task-specific output labels. Replace it when the new task has different categories; train the new head and decide whether to fine-tune earlier layers."
+  },
+  {
+    "id": "l09-120",
+    "lecture": 9,
+    "title": "Generalization",
+    "question": "What does very low training error but much higher validation error suggest?",
+    "answer": "Overfitting: the model fits the training examples but performs worse on unseen validation examples."
+  },
+  {
+    "id": "l09-121",
+    "lecture": 9,
+    "title": "Generalization",
+    "question": "As model complexity increases, what tends to happen to bias?",
+    "answer": "Bias tends to decrease because a more expressive model can represent a broader range of patterns."
+  },
+  {
+    "id": "l09-122",
+    "lecture": 9,
+    "title": "Generalization",
+    "question": "As model complexity increases, what tends to happen to variance?",
+    "answer": "Variance tends to increase because the model can become more sensitive to the particular training sample."
+  },
+  {
+    "id": "l09-123",
+    "lecture": 9,
+    "title": "Generalization",
+    "question": "Would horizontal flipping usually preserve labels in dog-versus-cat classification?",
+    "answer": "Yes. A horizontal flip usually preserves whether an image shows a dog or a cat."
+  },
+  {
+    "id": "l09-124",
+    "lecture": 9,
+    "title": "Generalization",
+    "question": "Would horizontal flipping always preserve a handwritten digit's label?",
+    "answer": "No. Some digits can become different or invalid digits when flipped, so augmentation must preserve the task's label."
+  },
+  {
+    "id": "l09-125",
+    "lecture": 9,
+    "title": "Generalization",
+    "question": "Why should augmentation be applied to training data rather than the test set?",
+    "answer": "Keep the test set untouched so it remains a clean final estimate of performance on unseen data. Use validation data to tune choices."
+  },
+  {
+    "id": "l09-126",
+    "lecture": 9,
+    "title": "Generalization",
+    "question": "What does the λ term in squared weight decay do?",
+    "answer": "It penalizes large weights; larger λ applies stronger pressure toward smaller weights."
+  },
+  {
+    "id": "l09-127",
+    "lecture": 9,
+    "title": "Generalization",
+    "question": "In w←(1−αλ)w−α∂J/∂w, which factor creates weight decay?",
+    "answer": "The factor (1−αλ) shrinks the current weight on each update."
+  },
+  {
+    "id": "l09-128",
+    "lecture": 9,
+    "title": "Generalization",
+    "question": "Why might one validation-loss increase be too little reason to stop training?",
+    "answer": "It could be random fluctuation. Look for a sustained worsening trend or use a patience window."
+  },
+  {
+    "id": "l09-129",
+    "lecture": 9,
+    "title": "Generalization",
+    "question": "Why use validation error for early stopping instead of training error?",
+    "answer": "Training error usually keeps improving as fitting continues; validation error better indicates how the model may perform on unseen data."
+  },
+  {
+    "id": "l09-130",
+    "lecture": 9,
+    "title": "Generalization",
+    "question": "How can early stopping act similarly to weight decay?",
+    "answer": "Stopping early limits how long weights have to grow, often leaving smaller weights and a less complex fit."
+  },
+  {
+    "id": "l09-131",
+    "lecture": 9,
+    "title": "Generalization",
+    "question": "If dropout probability is ρ=0.3, what fraction of units is kept on average?",
+    "answer": "Keep probability is 1−ρ=0.7, so 70% are kept on average."
+  },
+  {
+    "id": "l09-132",
+    "lecture": 9,
+    "title": "Generalization",
+    "question": "Why does the lecture turn dropout off at test time?",
+    "answer": "Random test masks make predictions stochastic; averaging many masks requires many forward passes and is costly."
+  },
+  {
+    "id": "l09-133",
+    "lecture": 9,
+    "title": "Generalization",
+    "question": "What deterministic adjustment does the lecture recommend for dropout at test time?",
+    "answer": "Disable dropout and multiply the weights by the keep probability 1−ρ (0.7 when ρ=0.3), matching the expected contribution."
+  },
+  {
+    "id": "l09-134",
+    "lecture": 9,
+    "title": "Generalization",
+    "question": "For a convex loss, why can averaging model predictions be useful?",
+    "answer": "The loss of the averaged prediction is no greater than the average loss of individual predictions, so averaging can improve or preserve performance."
+  },
+  {
+    "id": "l09-135",
+    "lecture": 9,
+    "title": "Generalization",
+    "question": "What is bagging?",
+    "answer": "Train models on different resampled/subsets of the training data, then combine their predictions."
+  },
+  {
+    "id": "l09-136",
+    "lecture": 9,
+    "title": "Generalization",
+    "question": "How does dropout discourage overfitting in plain language?",
+    "answer": "It trains the network under random missing-unit patterns, making it less dependent on one exact collection of units or features."
+  },
+  {
+    "id": "l09-137",
+    "lecture": 9,
+    "title": "Generalization",
+    "question": "Name two costs of using an ensemble.",
+    "answer": "It takes more computation/storage to train and evaluate, and the combined model can be harder to interpret."
+  }
+]
